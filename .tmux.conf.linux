@@ -1,0 +1,24 @@
+# prefixキーをC-aに変更する
+set -g prefix C-a
+
+# C-bのキーバインドを解除する
+unbind C-b
+
+# 設定ファイルをリロードする
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+# 256色端末を使用する
+set -g default-terminal screen-256color
+
+# マウス関連（デフォルトはOFFにしておいて、prefix+mで切替える）
+set -g mouse off
+bind-key m if-shell "tmux show-options -g mouse | grep off" "set-option -g mouse on" "set-option -g mouse off"
+
+# コピーモードを設定する
+## viのキーバインドを使用する
+set -g mode-keys vi
+## コピーモードの操作をvi風に設定する
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy y copy-pipe "xsel -ib"
+unbind -t vi-copy Enter
+bind-key -t vi-copy Enter copy-pipe "xsel -ib"
