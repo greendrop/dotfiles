@@ -18,7 +18,9 @@ bind-key m if-shell "tmux show-options -g mouse | grep off" "set-option -g mouse
 ## viのキーバインドを使用する
 set -g mode-keys vi
 ## コピーモードの操作をvi風に設定する
-bind-key -t vi-copy v begin-selection
-bind-key -t vi-copy y copy-pipe "xsel -ib"
-unbind -t vi-copy Enter
-bind-key -t vi-copy Enter copy-pipe "xsel -ib"
+#bind-key -t vi-copy v begin-selection
+#bind-key -t vi-copy y copy-pipe "xsel -ib"
+#unbind -t vi-copy Enter
+#bind-key -t vi-copy Enter copy-pipe "xsel -ib"
+bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "xsel -ip && xsel -op | xsel -ib"
+bind-key -T copy-mode-vi Enter send -X copy-pipe-and-cancel "xsel -ip && xsel -op | xsel -ib"
