@@ -18,6 +18,6 @@ bind-key m if-shell "tmux show-options -g mouse | grep off" "set-option -g mouse
 ## viのキーバインドを使用する
 set -g mode-keys vi
 ## コピーモードの操作をvi風に設定する
-bind-key -T copy-mode-vi y send -X copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi y send -X copy-pipe "pbcopy"
 unbind -T copy-mode-vi Enter
-bind-key -T copy-mode-vi Enter send -X copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi Enter send -X copy-pipe "pbcopy"
